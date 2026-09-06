@@ -9,10 +9,16 @@
 <p align="center"><strong>Engineering scale:</strong> CTSP USC model. Surface shading shows deposited-film thickness; blue → green → yellow → red/pink indicates increasing molecular number density (green is intermediate, not a species). Source: Brieda et al. (2022).</p>
 
 <p align="center">
-  <img src="assets/hero-lammps-heterogeneous-film-perspective.png" width="100%" alt="High-resolution perspective rendering of a heterogeneous contaminant film deposited on a gold substrate in LAMMPS">
+  <img src="assets/hero-lammps-heterogeneous-film-side.png" width="100%" alt="High-resolution side view of a heterogeneous contaminant film deposited on a gold substrate in LAMMPS">
 </p>
 
-<p align="center"><strong>Atomistic scale:</strong> high-resolution LAMMPS rendering of the final heterogeneous contaminant film on gold. Source: Meyer, Brieda, and Wang (2025).</p>
+<p align="center"><strong>Atomistic scale:</strong> side view of the final heterogeneous film, exposing interfacial structure, surface roughness, and molecular clustering. Source: Meyer, Brieda, and Wang (2025).</p>
+
+<p align="center">
+  <img src="assets/hero-lammps-heterogeneous-film-perspective.png" width="88%" alt="Perspective view of the same final heterogeneous contaminant film deposited on gold">
+</p>
+
+<p align="center"><em>Perspective view of the same final state, showing the three-dimensional film morphology.</em></p>
 
 ## Overview
 
@@ -94,19 +100,19 @@ The LAMMPS simulations modeled heterogeneous water, hydrocarbon, and nitrogen co
 ### Sequential “Sandwich” Deposition
 
 <p align="center">
-  <img src="assets/lammps-sandwich-water-layer-perspective.png" width="90%" alt="Perspective rendering of the sandwich case after formation of the first water layer">
+  <img src="assets/lammps-sandwich-water-layer-side.png" width="100%" alt="Side view of the sandwich case after formation of the first water layer">
 </p>
 
 <p align="center"><em>Stage 1: the first water layer forms on the gold substrate.</em></p>
 
 <p align="center">
-  <img src="assets/lammps-sandwich-hydrocarbon-layer-perspective.png" width="90%" alt="Perspective rendering of the sandwich case after formation of the hydrocarbon layer">
+  <img src="assets/lammps-sandwich-hydrocarbon-layer-side.png" width="100%" alt="Side view of the sandwich case after formation of the hydrocarbon layer">
 </p>
 
 <p align="center"><em>Stage 2: a hydrocarbon layer forms over the initial water film.</em></p>
 
 <p align="center">
-  <img src="assets/lammps-sandwich-final-layered-film-perspective.png" width="90%" alt="Perspective rendering of the final sandwich deposition configuration after the third water layer formed">
+  <img src="assets/lammps-sandwich-final-layered-film-side.png" width="100%" alt="Side view of the final sandwich deposition configuration after the third water layer formed">
 </p>
 
 <p align="center"><em>Stage 3: the final water layer completes the sequentially deposited film.</em></p>
@@ -114,16 +120,12 @@ The LAMMPS simulations modeled heterogeneous water, hydrocarbon, and nitrogen co
 ### Heterogeneous Deposition and Film Growth
 
 <p align="center">
-  <img src="assets/lammps-heterogeneous-first-monolayer-perspective.png" width="90%" alt="Perspective rendering of a heterogeneous contaminant film at timestep two million as its first monolayer approaches completion">
+  <img src="assets/lammps-heterogeneous-first-monolayer-side.png" width="100%" alt="Side view of a heterogeneous contaminant film at timestep two million as its first monolayer approaches completion">
 </p>
 
 <p align="center"><em>At timestep 2 million, the first heterogeneous monolayer is nearly complete.</em></p>
 
-<p align="center">
-  <img src="assets/hero-lammps-heterogeneous-film-perspective.png" width="90%" alt="Perspective rendering of the final heterogeneous contaminant-film configuration">
-</p>
-
-<p align="center"><em>Final heterogeneous deposition configuration after continued film growth and molecular clustering.</em></p>
+The completed heterogeneous film is shown in the side and perspective hero views above; together they expose both the interface-normal structure and the three-dimensional morphology without repeating all three camera angles throughout the README.
 
 ### Thermally Activated Restructuring and Desorption
 
