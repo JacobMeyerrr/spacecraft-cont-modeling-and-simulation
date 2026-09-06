@@ -1,6 +1,6 @@
 # Spacecraft Contamination Modeling & Simulation
 
-**Multiscale research connecting QCM-informed, spacecraft-level molecular transport with atomistic molecular dynamics of heterogeneous contaminant films.**
+**Multiscale Spacecraft Comtanination Modeling & Simulation research connecting QCM-informed macro-scale reduced-order molecular transport models with atomistic molecular dynamics simulations of heterogeneous contaminant films.**
 
 <p align="center">
   <img src="assets/hero-ctsp-usc-molecular-transport.png" width="100%" alt="CTSP simulation of the USC vacuum-chamber geometry with predicted contaminant deposition and molecular number density fields">
