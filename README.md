@@ -9,6 +9,14 @@
 > **My direct contributions:** QCM signal decomposition, CTSP experimental-correlation studies, GPU LAMMPS workflow development and execution, sensitivity analysis, scientific post-processing, and first-author publication. The resulting multispecies cases reached **4.3%** and **5.5%** error, while the atomistic study exposed deposition-history and material-pair effects missing from reduced-order contamination models.
 
 <p align="center">
+  <a href="assets/system/qcm-nonlos-schematic.png"><img src="assets/system/qcm-nonlos-schematic.png" width="45%" alt="Schematic of the non-line-of-sight gray-body transport problem: a heated outgassing sample, QCM1 with direct line of sight, QCM2 facing the chamber wall, and the louver/pump sink"></a>
+  &nbsp;&nbsp;
+  <a href="assets/system/ctsp-blue-origin-transport-fields.png"><img src="assets/system/ctsp-blue-origin-transport-fields.png" width="44%" alt="CTSP simulation of the Blue Origin chamber showing molecular-number-density and deposited-film-thickness fields"></a>
+</p>
+
+<p align="center"><sub><strong>Engineering scale:</strong> the non-line-of-sight, multiple-bounce transport problem (left) and its CTSP chamber solution (right) — contamination reaching an out-of-sight sensor must survive repeated wall interactions. Sources: multispecies QCM manuscript (Fig. 1) and Brieda et al. (2022), Fig. 8.</sub></p>
+
+<p align="center">
   <a href="assets/md/hero/final-heterogeneous-top.webp"><img src="assets/md/hero/final-heterogeneous-top.webp" width="30%" alt="Top view of the extended heterogeneous contaminant film on gold"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/hero/final-heterogeneous-side.webp"><img src="assets/md/hero/final-heterogeneous-side.webp" width="30%" alt="Side view of the extended heterogeneous contaminant film on gold"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/hero/final-heterogeneous-perspective.webp"><img src="assets/md/hero/final-heterogeneous-perspective.webp" width="22%" alt="Perspective view of the extended heterogeneous contaminant film on gold"></a>
@@ -47,7 +55,7 @@ The long-term objective is **atomistically informed model reduction**: convertin
 | Replace one unitary sticking curve with empirical virtual species | Preserve multimodal QTGA behavior without claiming unsupported chemical identities | QCM2 correlation improved to 4.3% and 5.5% error in the best reported cases |
 | Compare sequential and simultaneous deposition histories | Isolate how initial morphology and underlying material alter later desorption | Full sandwich and heterogeneous state histories below |
 | Use TIP4P/Ice, OPLS-AA, EAM Au, and a benchmarked water-Au Morse interaction | Represent cryogenic mixed films and the Au interface within a classical non-reactive model | Force-field definitions and sensitivity results are archived with the study |
-| Feature the corrected-toluene 350 K runs | Keep the headline results physically interpretable and separate from a known early parameter error | Corrected species histories and clean/persistent endpoints shown below |
+| Feature the corrected-toluene 350 K runs | Keep the headline results physically interpretable and separate from the initial 450 K batch's toluene&ndash;hydrogen Lennard-Jones error | Corrected species histories and clean/persistent endpoints shown below |
 | Run containerized GPU jobs with restart checkpoints | Support long HPC trajectories and recovery across scheduler limits | Historical launch pattern, restart workflow, and release checklist are documented |
 
 ## Multiscale Architecture
@@ -70,7 +78,7 @@ Solid arrows indicate implemented workflows. The dashed arrow identifies the pla
 Each Gaussian component represents an empirical **virtual species**, not a claimed one-to-one chemical identification. Its area supplies a relative outgassing mass fraction, while its cumulative distribution supplies temperature-dependent sticking behavior.
 
 <p align="center">
-  <a href="assets/qcm/multigaussian-qtga-deconvolution.png"><img src="assets/qcm/multigaussian-qtga-deconvolution.png" width="78%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></a>
+  <a href="assets/qcm/multigaussian-qtga-deconvolution.png"><img src="assets/qcm/multigaussian-qtga-deconvolution.png" width="58%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></a>
 </p>
 
 <p align="center"><sub>Two-, three-, and four-Gaussian decompositions of an experimental QTGA signal.</sub></p>
@@ -99,11 +107,42 @@ CTSP propagates virtual contaminant species through chamber geometry using parti
 
 ### Experimental correlation
 
-<p align="center">
-  <a href="assets/qcm/hot-to-cold-validation.png"><img src="assets/qcm/hot-to-cold-validation.png" width="78%" alt="Hot-to-cold QCM validation table showing 5.5 percent error for the six-Gaussian sticking-coefficient model"></a>
-</p>
+Two independent validation cases anchor the multispecies method. In the **cold-to-hot** cases, prediction error falls sharply as the number of virtual species approaches the number of significant species in the signal: the best warm-wall case (four Gaussians) reaches **4.3%**, versus **720–3796%** for the legacy single-species sticking-coefficient model on the same data.
 
-<p align="center"><sub>The six-Gaussian sticking-coefficient model reached 5.5% error; the two evaluated Arrhenius activation-energy fits produced 620% and 2502% error.</sub></p>
+<div align="center">
+
+**Multispecies deposition-rate reduction, cold-to-hot cases**
+
+| Case | Fit | Experimental | Numerical | Error |
+|---|---|--:|--:|--:|
+| BO harness | 1&#8209;Gaussian | 1.0 | 8.7 | 768% |
+|  | 2&#8209;Gaussian | 1.0 | 2.1 | 114% |
+|  | 3&#8209;Gaussian | 1.0 | 2.4 | 142% |
+| BO cable, warm wall | 1&#8209;Gaussian | 1.45 | 45.9 | 3062% |
+|  | 2&#8209;Gaussian | 1.45 | 2.4 | 62% |
+|  | 3&#8209;Gaussian | 1.45 | 2.1 | 43% |
+|  | **4&#8209;Gaussian** | **1.45** | **1.39** | **4.3%** |
+| BO cable, cold wall | 1&#8209;Gaussian | 5.0 | 153.3 | 2966% |
+|  | 2&#8209;Gaussian | 5.0 | 46.8 | 837% |
+|  | 3&#8209;Gaussian | 5.0 | 28.7 | 474% |
+
+</div>
+
+In the independent **hot-to-cold** validation case, the six-Gaussian sticking-coefficient model reaches **5.5%** error, while the two analytical Arrhenius activation-energy fits — evaluated on the *same* Gaussians — are far less accurate:
+
+<div align="center">
+
+**Hot-to-cold TGA validation**
+
+| Method | Experimental | Numerical | Error |
+|---|--:|--:|--:|
+| 6-Gaussian sticking coeff. | 1.65 | 1.56 | **5.5%** |
+| E<sub>a</sub> fits (&tau;&#8320; = 10&#8315;&#185;&#178;) | 1.65 | 42.9 | 2502% |
+| E<sub>a</sub> fits (custom &tau;&#8320;) | 1.65 | 11.9 | 620% |
+
+</div>
+
+<p align="center"><sub>Values are the QCM1/QCM2 deposited-mass ratio; error is relative to the experiment. Source: multispecies QCM manuscript, Tables II&ndash;III.</sub></p>
 
 ## Atomistic Molecular Dynamics
 
@@ -112,8 +151,8 @@ The primary production cases contain water, methane, nitrogen, decane, and tolue
 | Model element | Implementation |
 |---|---|
 | Engine | LAMMPS; classical, non-reactive molecular dynamics |
-| Deposition conditions | 273.15 K incident thermal velocities; 73.15 K Au substrate |
-| Desorption sequence shown below | Corrected-toluene 350 K trajectory |
+| Deposition conditions | 273.15 K (0 &deg;C) incident thermal velocities; 73 K (&minus;200.15 &deg;C) Au substrate |
+| Desorption sequence shown below | Corrected-toluene TGA; Berendsen ramp 73 K &rarr; 350 K, then hold |
 | Water / electrostatics | TIP4P/Ice with `pppm/tip4p`, relative RMS force tolerance `1e-5` |
 | Organic molecules | OPLS-AA representations for methane, decane, and toluene |
 | Gold and interface | EAM Au; Morse water-Au interaction; Lennard-Jones cross interactions |
@@ -135,7 +174,7 @@ Each state is shown **top / side / perspective**, left to right, at the paper's 
 
 The sandwich case isolates deposition history by forming a water layer, adding the mixed contaminant layer, and finishing with a second water layer.
 
-**State 0 - initial injection configuration**
+<div align="center"><b>State 0 &mdash; initial injection configuration:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/sandwich/00-initial-top.webp"><img src="assets/md/deposition/sandwich/00-initial-top.webp" width="30%" alt="Top view of the initial sandwich deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -145,7 +184,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <p align="center"><sub>A molecule is introduced above the clean 73 K Au surface.</sub></p>
 
-**State 1 - first water layer**
+<div align="center"><b>State 1 &mdash; first water layer:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/sandwich/01-water-layer-top.webp"><img src="assets/md/deposition/sandwich/01-water-layer-top.webp" width="30%" alt="Top view after the first water layer formed in the sandwich deposition case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -155,7 +194,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <p align="center"><sub>The initial water film forms directly on Au.</sub></p>
 
-**State 2 - mixed contaminant layer**
+<div align="center"><b>State 2 &mdash; mixed contaminant layer:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/sandwich/02-hydrocarbon-layer-top.webp"><img src="assets/md/deposition/sandwich/02-hydrocarbon-layer-top.webp" width="30%" alt="Top view after the mixed contaminant layer formed in the sandwich case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -165,7 +204,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <p align="center"><sub>Methane, N₂, decane, and toluene form the intermediate layer over water.</sub></p>
 
-**State 3 - completed layered film**
+<div align="center"><b>State 3 &mdash; completed layered film:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/sandwich/03-final-water-layer-top.webp"><img src="assets/md/deposition/sandwich/03-final-water-layer-top.webp" width="30%" alt="Top view of the final sandwich deposition film after the second water layer formed"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -181,7 +220,7 @@ The first two layers remain comparatively stratified, while the final water depo
 
 The heterogeneous case samples water, methane, nitrogen, decane, and toluene throughout one simultaneous deposition history.
 
-**State 0 - initial injection configuration**
+<div align="center"><b>State 0 &mdash; initial injection configuration:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/heterogeneous/00-initial-top.webp"><img src="assets/md/deposition/heterogeneous/00-initial-top.webp" width="30%" alt="Top view of the initial heterogeneous deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -191,7 +230,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <p align="center"><sub>The heterogeneous and sandwich cases begin from the same clean Au geometry.</sub></p>
 
-**State 1 - timestep 2,000,000 (~3.09 ns)**
+<div align="center"><b>State 1 &mdash; timestep 2,000,000 (~3.09 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/heterogeneous/01-timestep-2000000-top.webp"><img src="assets/md/deposition/heterogeneous/01-timestep-2000000-top.webp" width="30%" alt="Top view of heterogeneous deposition at two million timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -201,7 +240,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <p align="center"><sub>The first heterogeneous monolayer is nearly complete.</sub></p>
 
-**State 2 - end of the original deposition run**
+<div align="center"><b>State 2 &mdash; end of the original deposition run:</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/heterogeneous/02-final-top.webp"><img src="assets/md/deposition/heterogeneous/02-final-top.webp" width="30%" alt="Top view at the end of the original heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -211,7 +250,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <p align="center"><sub>The mixed film develops nonuniform coverage, roughness, and molecular clustering.</sub></p>
 
-**State 3 - extended run (2× the original simulation duration)**
+<div align="center"><b>State 3 &mdash; extended run (2× the original simulation duration):</b></div>
 
 <p align="center">
   <a href="assets/md/deposition/heterogeneous/03-extended-final-top.webp"><img src="assets/md/deposition/heterogeneous/03-extended-final-top.webp" width="30%" alt="Top view of the extended heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -233,11 +272,11 @@ Unlike the prescribed sandwich history, simultaneous deposition produces a later
 
 ## Desorption
 
-The primary histories below use the **corrected toluene parameters** at 350 K. Every saved state again uses the paper's top / side / perspective proportions. The earlier 450 K exploratory sequence with the known excessively strong toluene-hydrogen Lennard-Jones parameters is intentionally excluded from headline results.
+Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from its 73 K deposition set point up to a target hold temperature, then holds for several million steps. The paper runs four targets &mdash; **150 K, 250 K, 350 K, and 450 K**. The sequences below are the **corrected-toluene 350 K** runs (paper Figs. 24&ndash;29). Because the substrate is *ramping*, each intermediate frame sits at an intermediate temperature between 73 K and 350 K rather than at a fixed 350 K; the labels below therefore give the saved **timestep** (the quantity actually recorded), not an instantaneous temperature. An *initial* 450 K batch used an erroneous, overly strong toluene&ndash;hydrogen Lennard-Jones parameterization and is excluded from headline results; the corrected-toluene runs shown here (and the corrected 450 K runs in the paper) do not carry that error. Every saved state uses the paper's top / side / perspective proportions.
 
-### Sequential “Sandwich” Desorption - 350 K
+### Sequential “Sandwich” Desorption (ramp to 350 K)
 
-**State 0 - completed film before heating**
+<div align="center"><b>State 0 &mdash; completed film before heating:</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/sandwich-350k/00-initial-top.webp"><img src="assets/md/desorption/sandwich-350k/00-initial-top.webp" width="30%" alt="Top view of the complete sandwich film before the 350 kelvin desorption run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -247,7 +286,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>The fully deposited layered film is the thermal-run initial condition.</sub></p>
 
-**State 1 - ~372,000 timesteps (~0.575 ns)**
+<div align="center"><b>State 1 &mdash; ~372,000 timesteps (~0.575 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/sandwich-350k/01-timestep-372000-top.webp"><img src="assets/md/desorption/sandwich-350k/01-timestep-372000-top.webp" width="30%" alt="Top view of sandwich desorption near 372000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,7 +296,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>Early thermal relaxation thickens and restructures the initially layered film.</sub></p>
 
-**State 2 - 534,000 timesteps (~0.825 ns)**
+<div align="center"><b>State 2 &mdash; 534,000 timesteps (~0.825 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/sandwich-350k/02-timestep-534000-top.webp"><img src="assets/md/desorption/sandwich-350k/02-timestep-534000-top.webp" width="30%" alt="Top view of sandwich desorption at 534000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -267,7 +306,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>Hydrocarbons enter the gas phase while water reorganizes against the Au surface.</sub></p>
 
-**State 3 - 711,000 timesteps (~1.10 ns)**
+<div align="center"><b>State 3 &mdash; 711,000 timesteps (~1.10 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/sandwich-350k/03-timestep-711000-top.webp"><img src="assets/md/desorption/sandwich-350k/03-timestep-711000-top.webp" width="30%" alt="Top view of the sandwich desorption end state at 711000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -277,9 +316,9 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>The remaining water has desorbed, leaving a clean Au substrate.</sub></p>
 
-### Heterogeneous Desorption - 350 K
+### Heterogeneous Desorption (ramp to 350 K)
 
-**State 0 - complete heterogeneous input film**
+<div align="center"><b>State 0 &mdash; complete heterogeneous input film:</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/00-input-film-top.webp"><img src="assets/md/desorption/heterogeneous-350k/00-input-film-top.webp" width="30%" alt="Top view of the complete heterogeneous input film before desorption"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -289,7 +328,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>The extended heterogeneous-deposition result supplies the full-film starting state.</sub></p>
 
-**State 1 - 138,000 timesteps (~0.213 ns)**
+<div align="center"><b>State 1 &mdash; 138,000 timesteps (~0.213 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/01-timestep-138000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/01-timestep-138000-top.webp" width="30%" alt="Top view of heterogeneous desorption at 138000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -299,7 +338,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>Early desorption begins with the weakest-bound population, including methane.</sub></p>
 
-**State 2 - 498,000 timesteps (~0.770 ns)**
+<div align="center"><b>State 2 &mdash; 498,000 timesteps (~0.770 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/02-timestep-498000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/02-timestep-498000-top.webp" width="30%" alt="Top view of heterogeneous desorption at 498000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -309,7 +348,7 @@ The primary histories below use the **corrected toluene parameters** at 350 K. E
 
 <p align="center"><sub>Water clusters merge while some hydrocarbons remain in direct contact with Au.</sub></p>
 
-**State 3 - 1,152,000 timesteps (~1.78 ns)**
+<div align="center"><b>State 3 &mdash; 1,152,000 timesteps (~1.78 ns):</b></div>
 
 <p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-top.webp" width="30%" alt="Top view of the heterogeneous desorption end state at 1152000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -328,7 +367,7 @@ The contrast with the clean sandwich endpoint is the central mechanistic result:
   <a href="assets/md/desorption/heterogeneous-350k/molecule-counts.png"><img src="assets/md/desorption/heterogeneous-350k/molecule-counts.png" width="47%" alt="Normalized species molecule counts versus timestep for the 350 kelvin heterogeneous desorption case"></a>
 </p>
 
-<p align="center"><sub>Normalized molecule counts for the 350 K sandwich (left) and heterogeneous (right) trajectories.</sub></p>
+<p align="center"><sub>Normalized molecule counts for the 350 K sandwich (left) and heterogeneous (right) trajectories. The x-axis is in <strong>thousands of steps</strong> (e.g. 700 &asymp; 700,000 steps).</sub></p>
 
 ## Historical Execution Environment and Reproducibility
 
@@ -366,7 +405,7 @@ For a tagged reproducible release, record the exact container digest or build re
 
 - **Published conference paper:** Jacob Meyer, Lubos Brieda, and Joseph Wang, “Molecular dynamics simulations of heterogeneous molecular contaminant films,” *Proceedings of SPIE* 13628, 136280A (2025). [DOI: 10.1117/12.3066473](https://doi.org/10.1117/12.3066473) · [repository copy](papers/meyer-brieda-wang-2025-md-contaminant-films.pdf)
 - **Follow-on manuscript:** Jacob Meyer, Lubos Brieda, and Joseph Wang, “Improved Accuracy in Molecular Transport Simulations Utilizing Multispecies Decomposition with QCM-Derived Sticking Coefficients.” [manuscript PDF](papers/meyer-brieda-wang-multispecies-qcm-transport-manuscript.pdf)
-- **Experimental foundation:** E. Helou et al., “Experimental investigation of QCM-derived sticking coefficients for use in molecular transport simulations,” *Proceedings of SPIE* 12224 (2022). [DOI: 10.1117/12.2632195](https://doi.org/10.1117/12.2632195)
+- **Experimental foundation:** L. Brieda, E. Helou, et al., “Experimental investigation of QCM-derived sticking coefficients for use in molecular transport simulations,” *Proceedings of SPIE* 12224, 122240O (2022). [DOI: 10.1117/12.2632195](https://doi.org/10.1117/12.2632195)
 
 ## Scope and Limitations
 
