@@ -9,10 +9,10 @@
 <p align="center"><strong>Engineering scale:</strong> CTSP USC model. Surface shading shows deposited-film thickness; blue → green → yellow → red/pink indicates increasing molecular number density (green is intermediate, not a species). Source: Brieda et al. (2022).</p>
 
 <p align="center">
-  <img src="assets/hero-lammps-thermal-restructuring.png" width="100%" alt="LAMMPS heterogeneous contaminant film at 450 kelvin before and after dynamic restructuring">
+  <img src="assets/hero-lammps-heterogeneous-film-perspective.png" width="100%" alt="High-resolution perspective rendering of a heterogeneous contaminant film deposited on a gold substrate in LAMMPS">
 </p>
 
-<p align="center"><strong>Atomistic scale:</strong> heterogeneous water–hydrocarbon film at 450 K before and after dynamic restructuring. Source: Meyer, Brieda, and Wang (2025).</p>
+<p align="center"><strong>Atomistic scale:</strong> high-resolution LAMMPS rendering of the final heterogeneous contaminant film on gold. Source: Meyer, Brieda, and Wang (2025).</p>
 
 ## Overview
 
@@ -91,13 +91,39 @@ CTSP propagates contaminant species through three-dimensional geometry using par
 
 The LAMMPS simulations modeled heterogeneous water, hydrocarbon, and nitrogen contamination on a gold substrate. Sequential “sandwich” cases and simultaneously deposited heterogeneous cases isolated the influence of deposition history, temperature, molecular interactions, and initial morphology.
 
+### Sequential “Sandwich” Deposition
+
+<p align="center">
+  <img src="assets/lammps-sandwich-water-layer-perspective.png" width="90%" alt="Perspective rendering of the sandwich case after formation of the first water layer">
+</p>
+
+<p align="center"><em>Stage 1: the first water layer forms on the gold substrate.</em></p>
+
+<p align="center">
+  <img src="assets/lammps-sandwich-hydrocarbon-layer-perspective.png" width="90%" alt="Perspective rendering of the sandwich case after formation of the hydrocarbon layer">
+</p>
+
+<p align="center"><em>Stage 2: a hydrocarbon layer forms over the initial water film.</em></p>
+
+<p align="center">
+  <img src="assets/lammps-sandwich-final-layered-film-perspective.png" width="90%" alt="Perspective rendering of the final sandwich deposition configuration after the third water layer formed">
+</p>
+
+<p align="center"><em>Stage 3: the final water layer completes the sequentially deposited film.</em></p>
+
 ### Heterogeneous Deposition and Film Growth
 
 <p align="center">
-  <img src="assets/lammps-heterogeneous-deposition-evolution.png" width="100%" alt="LAMMPS heterogeneous contaminant film at partial-monolayer and final-deposition states">
+  <img src="assets/lammps-heterogeneous-first-monolayer-perspective.png" width="90%" alt="Perspective rendering of a heterogeneous contaminant film at timestep two million as its first monolayer approaches completion">
 </p>
 
-<p align="center"><em>Evolution from a partially formed heterogeneous monolayer to the final deposited film.</em></p>
+<p align="center"><em>At timestep 2 million, the first heterogeneous monolayer is nearly complete.</em></p>
+
+<p align="center">
+  <img src="assets/hero-lammps-heterogeneous-film-perspective.png" width="90%" alt="Perspective rendering of the final heterogeneous contaminant-film configuration">
+</p>
+
+<p align="center"><em>Final heterogeneous deposition configuration after continued film growth and molecular clustering.</em></p>
 
 ### Thermally Activated Restructuring and Desorption
 
