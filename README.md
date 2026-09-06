@@ -1,12 +1,12 @@
 # Spacecraft Contamination Modeling & Simulation
 
-**Multiscale Spacecraft Comtanination Modeling & Simulation research connecting QCM-informed macro-scale reduced-order molecular transport models with atomistic molecular dynamics simulations of heterogeneous contaminant films.**
+**Multiscale research connecting QCM-informed, spacecraft-level molecular transport with atomistic molecular dynamics of heterogeneous contaminant films.**
 
 <p align="center">
   <img src="assets/hero-ctsp-usc-molecular-transport.png" width="100%" alt="CTSP simulation of the USC vacuum-chamber geometry with predicted contaminant deposition and molecular number density fields">
 </p>
 
-<p align="center"><strong>Engineering scale:</strong> CTSP simulation of the USC experimental configuration, resolving deposition and molecular-density fields. Source: Brieda et al. (2022).</p>
+<p align="center"><strong>Engineering scale:</strong> CTSP USC model. Surface shading shows deposited-film thickness; blue → green → yellow → red/pink indicates increasing molecular number density (green is intermediate, not a species). Source: Brieda et al. (2022).</p>
 
 <p align="center">
   <img src="assets/hero-lammps-thermal-restructuring.png" width="100%" alt="LAMMPS heterogeneous contaminant film at 450 kelvin before and after dynamic restructuring">
@@ -115,7 +115,13 @@ The LAMMPS simulations modeled heterogeneous water, hydrocarbon, and nitrogen co
 
 <p align="center"><em>Water-only deposition-interval sensitivity study used to assess dependence on numerical deposition cadence.</em></p>
 
-The atomistic models used established representations including TIP4P/Ice, OPLS-AA, CHARMM36, Lennard-Jones interactions, and an explicit gold substrate. A detailed molecule and force-field summary is included in [`assets/molecular-models-and-force-fields.png`](assets/molecular-models-and-force-fields.png).
+The atomistic models used established representations including TIP4P/Ice, OPLS-AA, CHARMM36, Lennard-Jones interactions, and an explicit gold substrate.
+
+<p align="center">
+  <img src="assets/molecular-models-and-force-fields.png" width="100%" alt="Molecular species, visualizations, force fields, and nonbonded parameters used in the LAMMPS simulations">
+</p>
+
+<p align="center"><em>Molecular species and force-field definitions used in the LAMMPS simulations.</em></p>
 
 ## Key Results
 
@@ -160,4 +166,3 @@ The molecular-dynamics cases are classical and non-reactive, and their finite le
 ## Figure Credits
 
 The USC and Blue Origin CTSP images and Blue Origin chamber photograph originate from Brieda et al. (2022) and are included as the experimental and system-modeling context used by this research. The LAMMPS figures and Gaussian-model results originate from the project's conference paper and follow-on manuscript. Before public release, replace screenshots with author-controlled source exports where available and confirm applicable publisher reuse requirements.
-
