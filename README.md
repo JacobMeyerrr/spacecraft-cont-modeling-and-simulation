@@ -78,7 +78,7 @@ Solid arrows indicate implemented workflows. The dashed arrow identifies the pla
 Each Gaussian component represents an empirical **virtual species**, not a claimed one-to-one chemical identification. Its area supplies a relative outgassing mass fraction, while its cumulative distribution supplies temperature-dependent sticking behavior.
 
 <p align="center">
-  <a href="assets/qcm/multigaussian-qtga-deconvolution.png"><img src="assets/qcm/multigaussian-qtga-deconvolution.png" width="58%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></a>
+  <a href="assets/qcm/multigaussian-qtga-deconvolution.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/qcm/multigaussian-qtga-deconvolution-dark.png"><img src="assets/qcm/multigaussian-qtga-deconvolution.png" width="58%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></picture></a>
 </p>
 
 <p align="center"><sub>Two-, three-, and four-Gaussian decompositions of an experimental QTGA signal.</sub></p>
@@ -161,7 +161,7 @@ The primary production cases contain water, methane, nitrogen, decane, and tolue
 | Execution / visualization | SLURM + Apptainer on USC HPC resources; OVITO and ParaView |
 
 <p align="center">
-  <a href="assets/md/methods/molecular-models-force-fields.png"><img src="assets/md/methods/molecular-models-force-fields.png" width="92%" alt="Table of molecular species, visual representations, force-field families, and nonbonded parameters used in the molecular-dynamics model"></a>
+  <a href="assets/md/methods/molecular-models-force-fields.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/md/methods/molecular-models-force-fields-dark.png"><img src="assets/md/methods/molecular-models-force-fields.png" width="92%" alt="Table of molecular species, visual representations, force-field families, and nonbonded parameters used in the molecular-dynamics model"></picture></a>
 </p>
 
 <p align="center"><sub>Molecular models and force-field definitions. PEG-600/CHARMM36 is documented as an ancillary parameterization; the primary sequences below use water, methane, nitrogen, decane, and toluene.</sub></p>
