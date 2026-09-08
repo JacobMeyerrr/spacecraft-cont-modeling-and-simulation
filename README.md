@@ -60,14 +60,9 @@ The long-term objective is **atomistically informed model reduction**: convertin
 
 ## Multiscale Architecture
 
-```mermaid
-flowchart TD
-    A["QTGA measurements"] --> B["Gaussian virtual-species model"]
-    B --> C["CTSP particle tracing and view factors"]
-    C --> D["System-scale deposition predictions"]
-    E["LAMMPS interfacial simulations"] --> F["Resolved surface physics"]
-    F -. "future reduced-order closures" .-> C
-```
+<p align="center">
+  <img src="assets/diagrams/multiscale-architecture.svg" width="88%" alt="Multiscale architecture flowchart. Main pipeline: QTGA measurements to a Gaussian virtual-species model to CTSP particle tracing and view factors to system-scale deposition predictions. A separate track runs from LAMMPS interfacial simulations to resolved surface physics, with a planned dashed coupling feeding future reduced-order closures back into CTSP.">
+</p>
 
 Solid arrows indicate implemented workflows. The dashed arrow identifies the planned cross-scale coupling.
 
@@ -182,7 +177,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
   <a href="assets/md/deposition/sandwich/00-initial-perspective.webp"><img src="assets/md/deposition/sandwich/00-initial-perspective.webp" width="22%" alt="Perspective view of the initial sandwich deposition configuration"></a>
 </p>
 
-<p align="left"><sub>A molecule is introduced above the clean 73 K Au surface.</sub></p>
+<p align="center"><sub>A molecule is introduced above the clean 73 K Au surface.</sub></p>
 
 <b>State 1 &mdash; first water layer:</b>
 
@@ -192,7 +187,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
   <a href="assets/md/deposition/sandwich/01-water-layer-perspective.webp"><img src="assets/md/deposition/sandwich/01-water-layer-perspective.webp" width="22%" alt="Perspective view after the first water layer formed in the sandwich deposition case"></a>
 </p>
 
-<p align="left"><sub>The initial water film forms directly on Au.</sub></p>
+<p align="center"><sub>The initial water film forms directly on Au.</sub></p>
 
 <b>State 2 &mdash; mixed contaminant layer:</b>
 
@@ -202,7 +197,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
   <a href="assets/md/deposition/sandwich/02-hydrocarbon-layer-perspective.webp"><img src="assets/md/deposition/sandwich/02-hydrocarbon-layer-perspective.webp" width="22%" alt="Perspective view after the mixed contaminant layer formed in the sandwich case"></a>
 </p>
 
-<p align="left"><sub>Methane, N₂, decane, and toluene form the intermediate layer over water.</sub></p>
+<p align="center"><sub>Methane, N₂, decane, and toluene form the intermediate layer over water.</sub></p>
 
 <b>State 3 &mdash; completed layered film:</b>
 
@@ -212,7 +207,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
   <a href="assets/md/deposition/sandwich/03-final-water-layer-perspective.webp"><img src="assets/md/deposition/sandwich/03-final-water-layer-perspective.webp" width="22%" alt="Perspective view of the final sandwich deposition film after the second water layer formed"></a>
 </p>
 
-<p align="left"><sub>The final water deposition completes the water / mixed-contaminant / water sequence.</sub></p>
+<p align="center"><sub>The final water deposition completes the water / mixed-contaminant / water sequence.</sub></p>
 
 The first two layers remain comparatively stratified, while the final water deposition clusters and partially penetrates the rough mixed layer. That difference motivated the direct comparison with simultaneous heterogeneous deposition.
 
@@ -228,7 +223,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
   <a href="assets/md/deposition/heterogeneous/00-initial-perspective.webp"><img src="assets/md/deposition/heterogeneous/00-initial-perspective.webp" width="22%" alt="Perspective view of the initial heterogeneous deposition configuration"></a>
 </p>
 
-<p align="left"><sub>The heterogeneous and sandwich cases begin from the same clean Au geometry.</sub></p>
+<p align="center"><sub>The heterogeneous and sandwich cases begin from the same clean Au geometry.</sub></p>
 
 <b>State 1 &mdash; timestep 2,000,000 (~3.09 ns):</b>
 
@@ -238,7 +233,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
   <a href="assets/md/deposition/heterogeneous/01-timestep-2000000-perspective.webp"><img src="assets/md/deposition/heterogeneous/01-timestep-2000000-perspective.webp" width="22%" alt="Perspective view of heterogeneous deposition at two million timesteps"></a>
 </p>
 
-<p align="left"><sub>The first heterogeneous monolayer is nearly complete.</sub></p>
+<p align="center"><sub>The first heterogeneous monolayer is nearly complete.</sub></p>
 
 <b>State 2 &mdash; end of the original deposition run:</b>
 
@@ -248,7 +243,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
   <a href="assets/md/deposition/heterogeneous/02-final-perspective.webp"><img src="assets/md/deposition/heterogeneous/02-final-perspective.webp" width="22%" alt="Perspective view at the end of the original heterogeneous deposition run"></a>
 </p>
 
-<p align="left"><sub>The mixed film develops nonuniform coverage, roughness, and molecular clustering.</sub></p>
+<p align="center"><sub>The mixed film develops nonuniform coverage, roughness, and molecular clustering.</sub></p>
 
 <b>State 3 &mdash; extended run (2× the original simulation duration):</b>
 
@@ -258,7 +253,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
   <a href="assets/md/deposition/heterogeneous/03-extended-final-perspective.webp"><img src="assets/md/deposition/heterogeneous/03-extended-final-perspective.webp" width="22%" alt="Perspective view of the extended heterogeneous deposition run"></a>
 </p>
 
-<p align="left"><sub>Extended deposition produces the complete mixed film used to initialize the thermal studies.</sub></p>
+<p align="center"><sub>Extended deposition produces the complete mixed film used to initialize the thermal studies.</sub></p>
 
 Unlike the prescribed sandwich history, simultaneous deposition produces a laterally heterogeneous morphology in which direct Au contact varies by molecule. That difference becomes important during desorption.
 
@@ -284,7 +279,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/sandwich-350k/00-initial-perspective.webp"><img src="assets/md/desorption/sandwich-350k/00-initial-perspective.webp" width="22%" alt="Perspective view of the complete sandwich film before the 350 kelvin desorption run"></a>
 </p>
 
-<p align="left"><sub>The fully deposited layered film is the thermal-run initial condition.</sub></p>
+<p align="center"><sub>The fully deposited layered film is the thermal-run initial condition.</sub></p>
 
 <b>State 1 &mdash; ~372,000 timesteps (~0.575 ns):</b>
 
@@ -294,7 +289,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/sandwich-350k/01-timestep-372000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/01-timestep-372000-perspective.webp" width="22%" alt="Perspective view of sandwich desorption near 372000 timesteps"></a>
 </p>
 
-<p align="left"><sub>Early thermal relaxation thickens and restructures the initially layered film.</sub></p>
+<p align="center"><sub>Early thermal relaxation thickens and restructures the initially layered film.</sub></p>
 
 <b>State 2 &mdash; 534,000 timesteps (~0.825 ns):</b>
 
@@ -304,7 +299,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/sandwich-350k/02-timestep-534000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/02-timestep-534000-perspective.webp" width="22%" alt="Perspective view of sandwich desorption at 534000 timesteps"></a>
 </p>
 
-<p align="left"><sub>Hydrocarbons enter the gas phase while water reorganizes against the Au surface.</sub></p>
+<p align="center"><sub>Hydrocarbons enter the gas phase while water reorganizes against the Au surface.</sub></p>
 
 <b>State 3 &mdash; 711,000 timesteps (~1.10 ns):</b>
 
@@ -314,7 +309,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/sandwich-350k/03-timestep-711000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/03-timestep-711000-perspective.webp" width="22%" alt="Perspective view of the sandwich desorption end state at 711000 timesteps"></a>
 </p>
 
-<p align="left"><sub>The remaining water has desorbed, leaving a clean Au substrate.</sub></p>
+<p align="center"><sub>The remaining water has desorbed, leaving a clean Au substrate.</sub></p>
 
 ### Heterogeneous Desorption (ramp to 350 K)
 
@@ -326,7 +321,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/heterogeneous-350k/00-input-film-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/00-input-film-perspective.webp" width="22%" alt="Perspective view of the complete heterogeneous input film before desorption"></a>
 </p>
 
-<p align="left"><sub>The extended heterogeneous-deposition result supplies the full-film starting state.</sub></p>
+<p align="center"><sub>The extended heterogeneous-deposition result supplies the full-film starting state.</sub></p>
 
 <b>State 1 &mdash; 138,000 timesteps (~0.213 ns):</b>
 
@@ -336,7 +331,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/heterogeneous-350k/01-timestep-138000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/01-timestep-138000-perspective.webp" width="22%" alt="Perspective view of heterogeneous desorption at 138000 timesteps"></a>
 </p>
 
-<p align="left"><sub>Early desorption begins with the weakest-bound population, including methane.</sub></p>
+<p align="center"><sub>Early desorption begins with the weakest-bound population, including methane.</sub></p>
 
 <b>State 2 &mdash; 498,000 timesteps (~0.770 ns):</b>
 
@@ -346,7 +341,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/heterogeneous-350k/02-timestep-498000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/02-timestep-498000-perspective.webp" width="22%" alt="Perspective view of heterogeneous desorption at 498000 timesteps"></a>
 </p>
 
-<p align="left"><sub>Water clusters merge while some hydrocarbons remain in direct contact with Au.</sub></p>
+<p align="center"><sub>Water clusters merge while some hydrocarbons remain in direct contact with Au.</sub></p>
 
 <b>State 3 &mdash; 1,152,000 timesteps (~1.78 ns):</b>
 
@@ -356,15 +351,15 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
   <a href="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-perspective.webp" width="22%" alt="Perspective view of the heterogeneous desorption end state at 1152000 timesteps"></a>
 </p>
 
-<p align="left"><sub>Water remains at the saved endpoint, together with a small persistent population at the Au interface; a longer run would be required to observe complete 350 K desorption.</sub></p>
+<p align="center"><sub>Water remains at the saved endpoint, together with a small persistent population at the Au interface; a longer run would be required to observe complete 350 K desorption.</sub></p>
 
 The contrast with the clean sandwich endpoint is the central mechanistic result: the same molecular type can persist differently when initially adsorbed on Au rather than on water, so source-target material pairing matters in addition to temperature and molecular identity.
 
 ### Species-resolved desorption histories
 
 <p align="center">
-  <a href="assets/md/desorption/sandwich-350k/molecule-counts.png"><img src="assets/md/desorption/sandwich-350k/molecule-counts.png" width="47%" alt="Normalized species molecule counts versus timestep for the 350 kelvin sandwich desorption case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="assets/md/desorption/heterogeneous-350k/molecule-counts.png"><img src="assets/md/desorption/heterogeneous-350k/molecule-counts.png" width="47%" alt="Normalized species molecule counts versus timestep for the 350 kelvin heterogeneous desorption case"></a>
+  <a href="assets/md/desorption/sandwich-350k/molecule-counts.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/md/desorption/sandwich-350k/molecule-counts-dark.png"><img src="assets/md/desorption/sandwich-350k/molecule-counts.png" width="47%" alt="Normalized species molecule counts versus timestep for the 350 kelvin sandwich desorption case"></picture></a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="assets/md/desorption/heterogeneous-350k/molecule-counts.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/md/desorption/heterogeneous-350k/molecule-counts-dark.png"><img src="assets/md/desorption/heterogeneous-350k/molecule-counts.png" width="47%" alt="Normalized species molecule counts versus timestep for the 350 kelvin heterogeneous desorption case"></picture></a>
 </p>
 
 <p align="center"><sub>Normalized molecule counts for the 350 K sandwich (left) and heterogeneous (right) trajectories. The x-axis is in <strong>thousands of steps</strong> (e.g. 700 &asymp; 700,000 steps).</sub></p>
