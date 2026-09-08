@@ -264,10 +264,10 @@ with O–Au parameters $D_e = 0.019278$ eV, $r_e = 0.905$ Å, $a = 4.2$, and H�
 <p align="center"><sub>The Morse potential for the water–gold interface. Its independent exponential attraction and repulsion capture the Au–O attraction / Au–H repulsion balance and the preferred flat orientation of water on gold — both missed by a single Lennard-Jones curve.</sub></p>
 
 <p align="center">
-  <a href="assets/md/methods/water-gold-schematic-v2.png"><img src="assets/md/methods/water-gold-schematic-v2.png" width="58%" alt="Schematic of a water molecule adsorbed on a gold FCC lattice, showing the equilibrium O-Au height, the Au-O attraction, and the weak Au-H repulsion described by the Morse potential"></a>
+  <a href="assets/md/methods/water-gold-schematic-v3.png"><img src="assets/md/methods/water-gold-schematic-v3.png" width="62%" alt="Two water molecules on a gold surface in H-down and H-up orientations, illustrating the orientation-dependent water-gold binding the Morse potential was fit to reproduce"></a>
 </p>
 
-<p align="center"><sub>What that well physically represents: a water molecule adsorbed on the gold surface. The Morse depth Dₑ is the O–Au binding energy and rₑ is the equilibrium height at the bottom of the well; the two exponential terms reproduce the Au–O attraction and the weaker Au–H repulsion that together set water's flat adsorption geometry.</sub></p>
+<p align="center"><sub>Representative water-on-gold adsorption geometries — <strong>H-down</strong> (hydrogens toward the surface) and <strong>H-up</strong> — of the kind used in interface DFT studies (e.g. Berg <em>et al.</em>) to benchmark water–gold force fields. The Morse potential was fit to reproduce this orientation-dependent O–Au binding — the well depth Dₑ and equilibrium separation rₑ — behavior a single Lennard-Jones curve could not capture.</sub></p>
 
 **Gold-gold** metallic bonding uses the many-body Embedded Atom Method, embedding each atom in the local electron density of its neighbors:
 
@@ -327,7 +327,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <b>State 0 &mdash; initial injection configuration:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/sandwich/00-initial-top.webp"><img src="assets/md/deposition/sandwich/00-initial-top.webp" width="30%" alt="Top view of the initial sandwich deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/00-initial-side.webp"><img src="assets/md/deposition/sandwich/00-initial-side.webp" width="30%" alt="Side view of the initial sandwich deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/00-initial-perspective.webp"><img src="assets/md/deposition/sandwich/00-initial-perspective.webp" width="22%" alt="Perspective view of the initial sandwich deposition configuration"></a>
@@ -337,7 +337,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <b>State 1 &mdash; first water layer:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/sandwich/01-water-layer-top.webp"><img src="assets/md/deposition/sandwich/01-water-layer-top.webp" width="30%" alt="Top view after the first water layer formed in the sandwich deposition case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/01-water-layer-side.webp"><img src="assets/md/deposition/sandwich/01-water-layer-side.webp" width="30%" alt="Side view after the first water layer formed in the sandwich deposition case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/01-water-layer-perspective.webp"><img src="assets/md/deposition/sandwich/01-water-layer-perspective.webp" width="22%" alt="Perspective view after the first water layer formed in the sandwich deposition case"></a>
@@ -347,7 +347,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <b>State 2 &mdash; mixed contaminant layer:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/sandwich/02-hydrocarbon-layer-top.webp"><img src="assets/md/deposition/sandwich/02-hydrocarbon-layer-top.webp" width="30%" alt="Top view after the mixed contaminant layer formed in the sandwich case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/02-hydrocarbon-layer-side.webp"><img src="assets/md/deposition/sandwich/02-hydrocarbon-layer-side.webp" width="30%" alt="Side view after the mixed contaminant layer formed over water in the sandwich case"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/02-hydrocarbon-layer-perspective.webp"><img src="assets/md/deposition/sandwich/02-hydrocarbon-layer-perspective.webp" width="22%" alt="Perspective view after the mixed contaminant layer formed in the sandwich case"></a>
@@ -357,7 +357,7 @@ The sandwich case isolates deposition history by forming a water layer, adding t
 
 <b>State 3 &mdash; completed layered film:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/sandwich/03-final-water-layer-top.webp"><img src="assets/md/deposition/sandwich/03-final-water-layer-top.webp" width="30%" alt="Top view of the final sandwich deposition film after the second water layer formed"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/03-final-water-layer-side.webp"><img src="assets/md/deposition/sandwich/03-final-water-layer-side.webp" width="30%" alt="Side view of the final sandwich deposition film after the second water layer formed"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/sandwich/03-final-water-layer-perspective.webp"><img src="assets/md/deposition/sandwich/03-final-water-layer-perspective.webp" width="22%" alt="Perspective view of the final sandwich deposition film after the second water layer formed"></a>
@@ -373,7 +373,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <b>State 0 &mdash; initial injection configuration:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/heterogeneous/00-initial-top.webp"><img src="assets/md/deposition/heterogeneous/00-initial-top.webp" width="30%" alt="Top view of the initial heterogeneous deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/00-initial-side.webp"><img src="assets/md/deposition/heterogeneous/00-initial-side.webp" width="30%" alt="Side view of the initial heterogeneous deposition configuration"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/00-initial-perspective.webp"><img src="assets/md/deposition/heterogeneous/00-initial-perspective.webp" width="22%" alt="Perspective view of the initial heterogeneous deposition configuration"></a>
@@ -383,7 +383,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <b>State 1 &mdash; timestep 2,000,000 (~3.09 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/heterogeneous/01-timestep-2000000-top.webp"><img src="assets/md/deposition/heterogeneous/01-timestep-2000000-top.webp" width="30%" alt="Top view of heterogeneous deposition at two million timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/01-timestep-2000000-side.webp"><img src="assets/md/deposition/heterogeneous/01-timestep-2000000-side.webp" width="30%" alt="Side view of heterogeneous deposition at two million timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/01-timestep-2000000-perspective.webp"><img src="assets/md/deposition/heterogeneous/01-timestep-2000000-perspective.webp" width="22%" alt="Perspective view of heterogeneous deposition at two million timesteps"></a>
@@ -393,7 +393,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <b>State 2 &mdash; end of the original deposition run:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/heterogeneous/02-final-top.webp"><img src="assets/md/deposition/heterogeneous/02-final-top.webp" width="30%" alt="Top view at the end of the original heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/02-final-side.webp"><img src="assets/md/deposition/heterogeneous/02-final-side.webp" width="30%" alt="Side view at the end of the original heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/02-final-perspective.webp"><img src="assets/md/deposition/heterogeneous/02-final-perspective.webp" width="22%" alt="Perspective view at the end of the original heterogeneous deposition run"></a>
@@ -403,7 +403,7 @@ The heterogeneous case samples water, methane, nitrogen, decane, and toluene thr
 
 <b>State 3 &mdash; extended run (2× the original simulation duration):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/deposition/heterogeneous/03-extended-final-top.webp"><img src="assets/md/deposition/heterogeneous/03-extended-final-top.webp" width="30%" alt="Top view of the extended heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/03-extended-final-side.webp"><img src="assets/md/deposition/heterogeneous/03-extended-final-side.webp" width="30%" alt="Side view of the extended heterogeneous deposition run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/deposition/heterogeneous/03-extended-final-perspective.webp"><img src="assets/md/deposition/heterogeneous/03-extended-final-perspective.webp" width="22%" alt="Perspective view of the extended heterogeneous deposition run"></a>
@@ -429,7 +429,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 0 &mdash; completed film before heating:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/sandwich-350k/00-initial-top.webp"><img src="assets/md/desorption/sandwich-350k/00-initial-top.webp" width="30%" alt="Top view of the complete sandwich film before the 350 kelvin desorption run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/00-initial-side.webp"><img src="assets/md/desorption/sandwich-350k/00-initial-side.webp" width="30%" alt="Side view of the complete sandwich film before the 350 kelvin desorption run"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/00-initial-perspective.webp"><img src="assets/md/desorption/sandwich-350k/00-initial-perspective.webp" width="22%" alt="Perspective view of the complete sandwich film before the 350 kelvin desorption run"></a>
@@ -439,7 +439,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 1 &mdash; ~372,000 timesteps (~0.575 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/sandwich-350k/01-timestep-372000-top.webp"><img src="assets/md/desorption/sandwich-350k/01-timestep-372000-top.webp" width="30%" alt="Top view of sandwich desorption near 372000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/01-timestep-372000-side.webp"><img src="assets/md/desorption/sandwich-350k/01-timestep-372000-side.webp" width="30%" alt="Side view of sandwich desorption near 372000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/01-timestep-372000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/01-timestep-372000-perspective.webp" width="22%" alt="Perspective view of sandwich desorption near 372000 timesteps"></a>
@@ -449,7 +449,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 2 &mdash; 534,000 timesteps (~0.825 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/sandwich-350k/02-timestep-534000-top.webp"><img src="assets/md/desorption/sandwich-350k/02-timestep-534000-top.webp" width="30%" alt="Top view of sandwich desorption at 534000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/02-timestep-534000-side.webp"><img src="assets/md/desorption/sandwich-350k/02-timestep-534000-side.webp" width="30%" alt="Side view of sandwich desorption at 534000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/02-timestep-534000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/02-timestep-534000-perspective.webp" width="22%" alt="Perspective view of sandwich desorption at 534000 timesteps"></a>
@@ -459,7 +459,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 3 &mdash; 711,000 timesteps (~1.10 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/sandwich-350k/03-timestep-711000-top.webp"><img src="assets/md/desorption/sandwich-350k/03-timestep-711000-top.webp" width="30%" alt="Top view of the sandwich desorption end state at 711000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/03-timestep-711000-side.webp"><img src="assets/md/desorption/sandwich-350k/03-timestep-711000-side.webp" width="30%" alt="Side view of the sandwich desorption end state at 711000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/sandwich-350k/03-timestep-711000-perspective.webp"><img src="assets/md/desorption/sandwich-350k/03-timestep-711000-perspective.webp" width="22%" alt="Perspective view of the sandwich desorption end state at 711000 timesteps"></a>
@@ -471,7 +471,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 0 &mdash; complete heterogeneous input film:</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/00-input-film-top.webp"><img src="assets/md/desorption/heterogeneous-350k/00-input-film-top.webp" width="30%" alt="Top view of the complete heterogeneous input film before desorption"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/00-input-film-side.webp"><img src="assets/md/desorption/heterogeneous-350k/00-input-film-side.webp" width="30%" alt="Side view of the complete heterogeneous input film before desorption"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/00-input-film-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/00-input-film-perspective.webp" width="22%" alt="Perspective view of the complete heterogeneous input film before desorption"></a>
@@ -481,7 +481,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 1 &mdash; 138,000 timesteps (~0.213 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/01-timestep-138000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/01-timestep-138000-top.webp" width="30%" alt="Top view of heterogeneous desorption at 138000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/01-timestep-138000-side.webp"><img src="assets/md/desorption/heterogeneous-350k/01-timestep-138000-side.webp" width="30%" alt="Side view of heterogeneous desorption at 138000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/01-timestep-138000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/01-timestep-138000-perspective.webp" width="22%" alt="Perspective view of heterogeneous desorption at 138000 timesteps"></a>
@@ -491,7 +491,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 2 &mdash; 498,000 timesteps (~0.770 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/02-timestep-498000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/02-timestep-498000-top.webp" width="30%" alt="Top view of heterogeneous desorption at 498000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/02-timestep-498000-side.webp"><img src="assets/md/desorption/heterogeneous-350k/02-timestep-498000-side.webp" width="30%" alt="Side view of heterogeneous desorption at 498000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/02-timestep-498000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/02-timestep-498000-perspective.webp" width="22%" alt="Perspective view of heterogeneous desorption at 498000 timesteps"></a>
@@ -501,7 +501,7 @@ Desorption is a simulated TGA: a Berendsen thermostat ramps the substrate from i
 
 <b>State 3 &mdash; 1,152,000 timesteps (~1.78 ns):</b>
 
-<p align="left">
+<p align="center">
   <a href="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-top.webp"><img src="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-top.webp" width="30%" alt="Top view of the heterogeneous desorption end state at 1152000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-side.webp"><img src="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-side.webp" width="30%" alt="Side view of the heterogeneous desorption end state at 1152000 timesteps"></a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-perspective.webp"><img src="assets/md/desorption/heterogeneous-350k/03-timestep-1152000-perspective.webp" width="22%" alt="Perspective view of the heterogeneous desorption end state at 1152000 timesteps"></a>
