@@ -9,9 +9,9 @@
 > **My direct contributions:** QCM signal decomposition, CTSP experimental-correlation studies, GPU LAMMPS workflow development and execution, sensitivity analysis, scientific post-processing, and first-author publication. The resulting multispecies cases reached **4.3%** and **5.5%** error, while the atomistic study exposed deposition-history and material-pair effects missing from reduced-order contamination models.
 
 <p align="center">
-  <a href="assets/system/qcm-nonlos-schematic.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/qcm-nonlos-schematic-dark.png"><img src="assets/system/qcm-nonlos-schematic.png" width="45%" alt="Schematic of the non-line-of-sight gray-body transport problem: a heated outgassing sample, QCM1 with direct line of sight, QCM2 facing the chamber wall, and the louver/pump sink"></picture></a>
+  <a href="assets/system/qcm-nonlos-schematic.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/qcm-nonlos-schematic-dark-r2.png"><img src="assets/system/qcm-nonlos-schematic.png" height="300" alt="Schematic of the non-line-of-sight gray-body transport problem: a heated outgassing sample, QCM1 with direct line of sight, QCM2 facing the chamber wall, and the louver/pump sink"></picture></a>
   &nbsp;&nbsp;
-  <a href="assets/system/ctsp-blue-origin-transport-fields.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-blue-origin-transport-fields-dark.png"><img src="assets/system/ctsp-blue-origin-transport-fields.png" width="44%" alt="CTSP simulation of the Blue Origin chamber showing molecular-number-density and deposited-film-thickness fields"></picture></a>
+  <a href="assets/system/ctsp-blue-origin-transport-fields-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-blue-origin-transport-fields-dark-r3.png"><img src="assets/system/ctsp-blue-origin-transport-fields-r2.png" height="300" alt="CTSP simulation of the Blue Origin chamber showing molecular-number-density and deposited-film-thickness fields"></picture></a>
 </p>
 
 <p align="center"><sub><strong>Engineering scale:</strong> the non-line-of-sight, multiple-bounce transport problem (left) and its CTSP chamber solution (right) — contamination reaching an out-of-sight sensor must survive repeated wall interactions. Sources: multispecies QCM manuscript (Fig. 1) and Brieda et al. (2022), Fig. 8.</sub></p>
@@ -61,7 +61,7 @@ The long-term objective is **atomistically informed model reduction**: convertin
 ## Multiscale Architecture
 
 <p align="center">
-  <img src="assets/diagrams/multiscale-architecture.svg" width="88%" alt="Multiscale architecture flowchart. Main pipeline: QTGA measurements to a Gaussian virtual-species model to CTSP particle tracing and view factors to system-scale deposition predictions. A separate track runs from LAMMPS interfacial simulations to resolved surface physics, with a planned dashed coupling feeding future reduced-order closures back into CTSP.">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/multiscale-architecture-dark.png"><img src="assets/diagrams/multiscale-architecture-light.png" width="72%" alt="Multiscale architecture flowchart. Main pipeline: QTGA measurements to a Gaussian virtual-species model to CTSP particle tracing and view factors to system-scale deposition predictions. A separate track runs from LAMMPS interfacial simulations to resolved surface physics, with a planned dashed coupling feeding future reduced-order closures back into CTSP."></picture>
 </p>
 
 Solid arrows indicate implemented workflows. The dashed arrow identifies the planned cross-scale coupling.
@@ -73,7 +73,7 @@ Solid arrows indicate implemented workflows. The dashed arrow identifies the pla
 Each Gaussian component represents an empirical **virtual species**, not a claimed one-to-one chemical identification. Its area supplies a relative outgassing mass fraction, while its cumulative distribution supplies temperature-dependent sticking behavior.
 
 <p align="center">
-  <a href="assets/qcm/multigaussian-qtga-deconvolution.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/qcm/multigaussian-qtga-deconvolution-dark.png"><img src="assets/qcm/multigaussian-qtga-deconvolution.png" width="58%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></picture></a>
+  <a href="assets/qcm/multigaussian-qtga-deconvolution-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/qcm/multigaussian-qtga-deconvolution-dark-r2.png"><img src="assets/qcm/multigaussian-qtga-deconvolution-r2.png" width="58%" alt="Two-, three-, and four-Gaussian decompositions of a QCM thermogravimetric-analysis signal"></picture></a>
 </p>
 
 <p align="center"><sub>Two-, three-, and four-Gaussian decompositions of an experimental QTGA signal.</sub></p>
@@ -83,13 +83,13 @@ Each Gaussian component represents an empirical **virtual species**, not a claim
 CTSP propagates virtual contaminant species through chamber geometry using particle tracing and view-factor transport. This represents repeated surface interactions and deposition on sensors without direct line of sight to the source.
 
 <p align="center">
-  <a href="assets/system/ctsp-usc-transport-fields.png"><img src="assets/system/ctsp-usc-transport-fields.png" width="94%" alt="CTSP model of the USC vacuum chamber, with deposited-film thickness on surfaces and a molecular-number-density field through the chamber"></a>
+  <a href="assets/system/ctsp-usc-transport-fields-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-usc-transport-fields-dark-r3.png"><img src="assets/system/ctsp-usc-transport-fields-r2.png" width="94%" alt="CTSP model of the USC vacuum chamber, with deposited-film thickness on surfaces and a molecular-number-density field through the chamber"></picture></a>
 </p>
 
 <p align="center"><sub>CTSP simulation of the USC chamber. Orange/brown surface shading shows deposited-film thickness; blue → green → yellow → red/pink shows increasing molecular number density. Green is an intermediate density, not a molecular species. Source: Brieda et al. (2022).</sub></p>
 
 <p align="center">
-  <a href="assets/system/ctsp-blue-origin-transport-fields.png"><img src="assets/system/ctsp-blue-origin-transport-fields.png" width="82%" alt="CTSP model of the Blue Origin chamber with molecular-number-density and deposited-film-thickness fields"></a>
+  <a href="assets/system/ctsp-blue-origin-transport-fields-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-blue-origin-transport-fields-dark-r3.png"><img src="assets/system/ctsp-blue-origin-transport-fields-r2.png" width="82%" alt="CTSP model of the Blue Origin chamber with molecular-number-density and deposited-film-thickness fields"></picture></a>
 </p>
 
 <p align="center"><sub>CTSP prediction for the Blue Origin chamber configuration. Source: Brieda et al. (2022).</sub></p>
@@ -155,9 +155,20 @@ The primary production cases contain water, methane, nitrogen, decane, and tolue
 | Nominal timestep | 1.54547 fs |
 | Execution / visualization | SLURM + Apptainer on USC HPC resources; OVITO and ParaView |
 
-<p align="center">
-  <a href="assets/md/methods/molecular-models-force-fields.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/md/methods/molecular-models-force-fields-dark.png"><img src="assets/md/methods/molecular-models-force-fields.png" width="92%" alt="Table of molecular species, visual representations, force-field families, and nonbonded parameters used in the molecular-dynamics model"></picture></a>
-</p>
+<p align="center"><strong>Table 1.</strong> Individual molecules used in the simulations, their visualizations, force fields, and atomic force-field parameters. Hydrocarbons all share the same OPLS-AA parameters.</p>
+
+<div align="center">
+
+| Molecule | Visualization | Model / Force Field | Force-Field Parameters |
+|:---:|:---:|:---:|:---|
+| **Water** (H<sub>2</sub>O) | <img src="assets/md/methods/molecules/water.png" height="70" alt="Water molecule"> | TIP4P/Ice | O–O: ε = 0.00914 eV, σ = 3.1668 Å<br>H–H: ε = 0.0 eV, σ = 1.0 Å<br>O–H: ε = 0.0 eV, σ = 1.0 Å |
+| **Methane** (CH<sub>4</sub>) | <img src="assets/md/methods/molecules/methane.png" height="70" alt="Methane molecule"> | OPLS-AA | C–C: ε = 0.00286 eV, σ = 3.5 Å<br>C–H: ε = 0.0 eV, σ = 0.0 Å<br>H–H: ε = 0.00130 eV, σ = 2.5 Å |
+| **Decane** (C<sub>10</sub>H<sub>22</sub>) | <img src="assets/md/methods/molecules/decane.png" height="70" alt="Decane molecule"> | OPLS-AA | Same parameters as above |
+| **Toluene** (C<sub>7</sub>H<sub>8</sub>) | <img src="assets/md/methods/molecules/toluene.png" height="70" alt="Toluene molecule"> | OPLS-AA | Same parameters as above |
+| **PEG600** | <img src="assets/md/methods/molecules/peg600.png" height="70" alt="PEG600 molecule"> | CHARMM36 | O–O: ε = 0.01096 eV, σ = 2.85 Å<br>C–C: ε = 0.00288 eV, σ = 3.58 Å<br>O–C: ε = 0.00561 eV, σ = 3.19 Å<br>O–H: ε = 0.00367 eV, σ = 2.60 Å<br>C–H: ε = 0.00188 eV, σ = 2.92 Å<br>H–H: ε = 0.00123 eV, σ = 2.37 Å |
+| **Nitrogen** (N<sub>2</sub>) | <img src="assets/md/methods/molecules/nitrogen.png" height="70" alt="Nitrogen molecule"> | LJ 12-6 | N–N: ε = 0.00615 eV, σ = 3.80 Å |
+
+</div>
 
 <p align="center"><sub>Molecular models and force-field definitions. PEG-600/CHARMM36 is documented as an ancillary parameterization; the primary sequences below use water, methane, nitrogen, decane, and toluene.</sub></p>
 
