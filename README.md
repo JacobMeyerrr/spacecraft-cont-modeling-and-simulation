@@ -230,7 +230,7 @@ U_{\text{LJ}}(r_{ij})=4\varepsilon_{ij}\left[\left(\frac{\sigma_{ij}}{r_{ij}}\ri
 $$
 
 <p align="center">
-  <a href="assets/md/methods/lennard-jones-potential.png"><img src="assets/md/methods/lennard-jones-potential.png" width="68%" alt="Lennard-Jones 12-6 potential showing sigma, epsilon, the force-free equilibrium separation, and the repulsive and attractive component terms"></a>
+  <a href="assets/md/methods/lennard-jones-potential-v2.png"><img src="assets/md/methods/lennard-jones-potential-v2.png" width="68%" alt="Lennard-Jones 12-6 potential showing sigma, epsilon, the force-free equilibrium separation, and the repulsive and attractive component terms"></a>
 </p>
 
 <p align="center"><sub>The Lennard-Jones 12-6 pair potential as the sum of a steep (σ/r)¹² repulsion and a softer (σ/r)⁶ attraction. σ sets the zero-crossing of the potential, ε the well depth, and the minimum at r = 2^(1/6)σ the force-free equilibrium separation.</sub></p>
@@ -258,10 +258,16 @@ $$
 with O–Au parameters $D_e = 0.019278$ eV, $r_e = 0.905$ Å, $a = 4.2$, and H–Au parameters $D_e = 0.000829$ eV, $r_e = 1.41$ Å, $a = 4.14$.
 
 <p align="center">
-  <a href="assets/md/methods/morse-potential.png"><img src="assets/md/methods/morse-potential.png" width="68%" alt="Morse potential showing the dissociation-energy well depth De and the equilibrium bond length re"></a>
+  <a href="assets/md/methods/morse-potential-v2.png"><img src="assets/md/methods/morse-potential-v2.png" width="68%" alt="Morse potential showing the dissociation-energy well depth De and the equilibrium bond length re"></a>
 </p>
 
 <p align="center"><sub>The Morse potential for the water–gold interface. Its independent exponential attraction and repulsion capture the Au–O attraction / Au–H repulsion balance and the preferred flat orientation of water on gold — both missed by a single Lennard-Jones curve.</sub></p>
+
+<p align="center">
+  <a href="assets/md/methods/water-gold-schematic.png"><img src="assets/md/methods/water-gold-schematic.png" width="58%" alt="Schematic of a water molecule adsorbed on a gold FCC lattice, showing the equilibrium O-Au height, the Au-O attraction, and the weak Au-H repulsion described by the Morse potential"></a>
+</p>
+
+<p align="center"><sub>What that well physically represents: a water molecule adsorbed on the gold surface. The Morse depth Dₑ is the O–Au binding energy and rₑ is the equilibrium height at the bottom of the well; the two exponential terms reproduce the Au–O attraction and the weaker Au–H repulsion that together set water's flat adsorption geometry.</sub></p>
 
 **Gold-gold** metallic bonding uses the many-body Embedded Atom Method, embedding each atom in the local electron density of its neighbors:
 
