@@ -78,18 +78,57 @@ Each Gaussian component represents an empirical **virtual species**, not a claim
 
 <p align="center"><sub>Two-, three-, and four-Gaussian decompositions of an experimental QTGA signal.</sub></p>
 
+### Governing relations (macro scale)
+
+The engineering-scale workflow is anchored by a compact set of physical relations, spanning QCM sensing, virtual-species decomposition, and particle-traced non-line-of-sight deposition.
+
+**QCM mass sensing (Sauerbrey).** Deposited mass follows from the quartz-crystal frequency shift:
+
+$$
+\Delta f = -\frac{2 f_0^{2}}{A\sqrt{\rho_q \mu_q}}\,\Delta m
+$$
+
+**Multi-Gaussian virtual-species decomposition.** The QTGA mass-loss signal is resolved into $N$ empirical virtual species, each a Gaussian in temperature:
+
+$$
+\dot{m}(T)=\sum_{k=1}^{N} A_k \exp\!\left[-\frac{(T-\mu_k)^2}{2\sigma_k^{2}}\right]
+$$
+
+Each component's area sets its relative outgassing mass fraction $w_k = A_k\sigma_k / \sum_j A_j\sigma_j$, and its cumulative distribution sets the temperature-dependent sticking (retention) coefficient:
+
+$$
+s_k(T)=1-\tfrac{1}{2}\left[1+\operatorname{erf}\!\left(\frac{T-\mu_k}{\sigma_k\sqrt{2}}\right)\right]
+$$
+
+**Thermally activated desorption (Frenkel / Arrhenius).** In CTSP each adsorbed macroparticle carries a mean surface residence time set by its activation energy, and is retained or re-emitted from the resulting probability:
+
+$$
+\tau=\tau_0\,\exp\!\left(\frac{E_a}{R T}\right),\qquad s_{\text{eff}}=1-\exp\!\left(-\frac{\Delta t}{\tau}\right)
+$$
+
+with vibrational period $\tau_0\approx10^{-13}\,\text{s}$; the per-species $E_a$ values enter the CTSP input directly.
+
+**Non-line-of-sight transport (view factors).** For a chamber with cold sinks, mass balance among the source (harness), sensor (QCM), and pump,
+
+$$
+\Phi_h A_h = \Phi_{\text{QCM}} A_{\text{QCM}} + \Phi_{\text{pump}} A_{\text{pump}}
+$$
+
+ties the deposition reaching an out-of-sight sensor to the source outgassing through a geometric view factor, which CTSP evaluates by launching cosine-law test particles and tracing their repeated wall bounces.
+
+
 ### Three-dimensional molecular transport
 
 CTSP propagates virtual contaminant species through chamber geometry using particle tracing and view-factor transport. This represents repeated surface interactions and deposition on sensors without direct line of sight to the source.
 
 <p align="center">
-  <a href="assets/system/ctsp-usc-transport-fields-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-usc-transport-fields-dark-r3.png"><img src="assets/system/ctsp-usc-transport-fields-r2.png" width="94%" alt="CTSP model of the USC vacuum chamber, with deposited-film thickness on surfaces and a molecular-number-density field through the chamber"></picture></a>
+  <a href="assets/system/ctsp-usc-transport-fields-r2.png"><img src="assets/system/ctsp-usc-transport-fields-r2.png" width="94%" alt="CTSP model of the USC vacuum chamber, with deposited-film thickness on surfaces and a molecular-number-density field through the chamber"></a>
 </p>
 
 <p align="center"><sub>CTSP simulation of the USC chamber. Orange/brown surface shading shows deposited-film thickness; blue → green → yellow → red/pink shows increasing molecular number density. Green is an intermediate density, not a molecular species. Source: Brieda et al. (2022).</sub></p>
 
 <p align="center">
-  <a href="assets/system/ctsp-blue-origin-transport-fields-r2.png"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/system/ctsp-blue-origin-transport-fields-dark-r3.png"><img src="assets/system/ctsp-blue-origin-transport-fields-r2.png" width="82%" alt="CTSP model of the Blue Origin chamber with molecular-number-density and deposited-film-thickness fields"></picture></a>
+  <a href="assets/system/ctsp-blue-origin-transport-fields-r2.png"><img src="assets/system/ctsp-blue-origin-transport-fields-r2.png" width="82%" alt="CTSP model of the Blue Origin chamber with molecular-number-density and deposited-film-thickness fields"></a>
 </p>
 
 <p align="center"><sub>CTSP prediction for the Blue Origin chamber configuration. Source: Brieda et al. (2022).</sub></p>
@@ -171,6 +210,106 @@ The primary production cases contain water, methane, nitrogen, decane, and tolue
 </div>
 
 <p align="center"><sub>Molecular models and force-field definitions. PEG-600/CHARMM36 is documented as an ancillary parameterization; the primary sequences below use water, methane, nitrogen, decane, and toluene.</sub></p>
+
+### Molecular-dynamics formulation
+
+Every trajectory integrates Newton's equations of motion for all atoms under an explicit many-body potential-energy surface:
+
+$$
+m_i\,\ddot{\mathbf{r}}_i = \mathbf{F}_i = -\nabla_i U,\qquad
+U = U_{\text{bond}}+U_{\text{angle}}+U_{\text{dih}}+U_{\text{LJ}}+U_{\text{Coul}}+U_{\text{EAM}}^{\,\text{Au}}+U_{\text{Morse}}^{\,\text{H}_2\text{O-Au}}
+$$
+
+In LAMMPS these terms are assembled through a single hybrid pair style — TIP4P long-range Lennard-Jones plus Coulomb for water, EAM/Finnis-Sinclair for gold, Morse for the water–gold interface, and Lennard-Jones for the remaining cross-pairs — over a 12 Å real-space cutoff, with PPPM handling reciprocal-space electrostatics.
+
+**Lennard-Jones 12-6** governs nitrogen and every non-bonded cross-pair not handled by a dedicated model:
+
+$$
+U_{\text{LJ}}(r_{ij})=4\varepsilon_{ij}\left[\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{12}-\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{6}\right],\qquad
+\mathbf{F}_{\text{LJ}}(r_{ij})=\frac{24\varepsilon_{ij}}{r_{ij}}\left[2\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{12}-\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{6}\right]\hat{\mathbf{r}}
+$$
+
+<p align="center">
+  <a href="assets/md/methods/lennard-jones-potential.png"><img src="assets/md/methods/lennard-jones-potential.png" width="68%" alt="Lennard-Jones 12-6 potential showing sigma, epsilon, the force-free equilibrium separation, and the repulsive and attractive component terms"></a>
+</p>
+
+<p align="center"><sub>The Lennard-Jones 12-6 pair potential as the sum of a steep (σ/r)¹² repulsion and a softer (σ/r)⁶ attraction. σ sets the zero-crossing of the potential, ε the well depth, and the minimum at r = 2^(1/6)σ the force-free equilibrium separation.</sub></p>
+
+Cross-species parameters use the Lorentz-Berthelot combining rules:
+
+$$
+\sigma_{ij}=\frac{\sigma_i+\sigma_j}{2},\qquad \varepsilon_{ij}=\sqrt{\varepsilon_i\,\varepsilon_j}
+$$
+
+Each pair potential is additionally energy-shifted to vanish at the 12 Å cutoff (`pair_modify shift yes mix arithmetic`).
+
+**Long-range electrostatics** for the TIP4P/Ice off-site charges use the Coulomb pair energy, solved under periodic boundaries by the particle-particle particle-mesh (PPPM) Ewald method (`pppm/tip4p`, RMS force tolerance $10^{-5}$):
+
+$$
+U_{\text{Coul}}(r_{ij})=\frac{1}{4\pi\epsilon_0}\frac{q_i q_j}{r_{ij}}
+$$
+
+**Water-gold** is the single interface pair modeled with a Morse potential rather than Lennard-Jones, after it reproduced the DFT-benchmarked adsorption landscape ($R^2=0.97$) that a 12-6 curve could not:
+
+$$
+U_{\text{Morse}}(r)=D_e\left[1-e^{-a(r-r_e)}\right]^{2}
+$$
+
+with O–Au parameters $D_e = 0.019278$ eV, $r_e = 0.905$ Å, $a = 4.2$, and H–Au parameters $D_e = 0.000829$ eV, $r_e = 1.41$ Å, $a = 4.14$.
+
+<p align="center">
+  <a href="assets/md/methods/morse-potential.png"><img src="assets/md/methods/morse-potential.png" width="68%" alt="Morse potential showing the dissociation-energy well depth De and the equilibrium bond length re"></a>
+</p>
+
+<p align="center"><sub>The Morse potential for the water–gold interface. Its independent exponential attraction and repulsion capture the Au–O attraction / Au–H repulsion balance and the preferred flat orientation of water on gold — both missed by a single Lennard-Jones curve.</sub></p>
+
+**Gold-gold** metallic bonding uses the many-body Embedded Atom Method, embedding each atom in the local electron density of its neighbors:
+
+$$
+U_{\text{EAM}}=\sum_i F\!\left(\sum_{j\ne i}\rho(r_{ij})\right)+\frac{1}{2}\sum_i\sum_{j\ne i}\phi(r_{ij})
+$$
+
+**Bonded interactions** (parameters from OPLS-AA for the hydrocarbons and CHARMM36 for PEG-600) are evaluated with harmonic functional forms throughout the LAMMPS setup — harmonic bonds, angles, dihedrals, and impropers:
+
+$$
+U_{\text{bond}}=\sum K_b(r-r_0)^2,\qquad U_{\text{angle}}=\sum K_\theta(\theta-\theta_0)^2
+$$
+
+$$
+U_{\text{dih}}=\sum K_\phi\left[\,1+d\cos(n\phi)\,\right],\qquad U_{\text{imp}}=\sum K_\chi(\chi-\chi_0)^2
+$$
+
+with $d=\pm1$ and integer multiplicity $n$.
+
+**Time integration** advances positions and velocities with the velocity-Verlet algorithm at $\Delta t = 1.54547$ fs:
+
+$$
+\mathbf{r}_i(t+\Delta t)=\mathbf{r}_i(t)+\mathbf{v}_i(t)\,\Delta t+\frac{1}{2}\frac{\mathbf{F}_i(t)}{m_i}\Delta t^{2}
+$$
+
+$$
+\mathbf{v}_i(t+\Delta t)=\mathbf{v}_i(t)+\frac{1}{2}\left[\frac{\mathbf{F}_i(t)+\mathbf{F}_i(t+\Delta t)}{m_i}\right]\Delta t
+$$
+
+**Thermal control.** During deposition the middle gold layers are coupled to a Langevin thermostat, which augments the conservative force with viscous drag and a fluctuating random force obeying the fluctuation-dissipation theorem,
+
+$$
+m_i\dot{\mathbf{v}}_i=\mathbf{F}_i-\frac{m_i}{\tau_{\text{damp}}}\mathbf{v}_i+\mathbf{F}_i^{R},\qquad
+\left\langle \mathbf{F}_i^{R}(t)\,\mathbf{F}_j^{R}(t')\right\rangle=\frac{2 m_i k_B T}{\tau_{\text{damp}}}\,\delta_{ij}\,\delta(t-t')
+$$
+
+while the topmost gold layer is left un-thermostatted so it can exchange energy realistically with the adsorbates. The desorption ramps ($73\ \text{K}\rightarrow150,\,250,\,350,\,450\ \text{K}$) instead thermostat all atoms with a Berendsen scheme, rescaling velocities each step by
+
+$$
+\lambda=\left[\,1+\frac{\Delta t}{\tau_T}\left(\frac{T_0}{T}-1\right)\right]^{1/2}
+$$
+
+Rigid water and nitrogen are held with SHAKE constraints (which permit the femtosecond-scale timestep), and the instantaneous temperature is the kinetic estimator over the active degrees of freedom,
+
+$$
+T=\frac{1}{N_{\text{dof}}\,k_B}\sum_i m_i \mathbf{v}_i^{\,2}
+$$
+
 
 ## Deposition
 
